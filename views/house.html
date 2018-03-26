@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<!-- Optional JavaScript -->
+
+    <title>图片</title>
+  </head>
+<body>
+    <header>
+      
+      <nav class="navbar navbar-expand navbar-dark bg-dark">
+		  <a class="navbar-brand" href="#">蚂蚁筑家</a>
+		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		  </button>
+
+		  <div class="collapse navbar-collapse" id="navbarsExample02">
+			<ul class="navbar-nav mr-auto">
+			  <li class="nav-item">
+				<a class="nav-link" href="/home">主页 </a>
+			  </li>
+			  <li class="nav-item">
+				<a class="nav-link" href="/house/new">发布</a>
+			  </li>
+			</ul>
+			<form class="form-inline my-2 my-md-0" method='post' action='/house/search'>
+			  <input class="form-control" type="text" name='community' value='{{community}}' placeholder="小区名搜索">
+			</form>
+		  </div>
+	  </nav>
+    </header>
+<section class="section">
+	<div id="box"></div>
+	<div class="col-md-4">
+              <div class="card mb-4 box-shadow">
+				<div class="card-body">
+				<span class="card-text">{{h.community}}</span>
+				</div>
+				{% if h.photo%}
+				<img  class="card-img-top" src="data:image/jpg;base64{{h.photo}}"/>
+				{% else %}
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=暂无" alt="Card image cap">
+                {% endif %}
+				<div class="card-body">                  
+				  <p>  <span class="card-text">{{h.room}}室{{h.hall}}厅</span>						
+						<span class="card-text">{{h.floor}}楼</span>
+						<span class="card-text">{{h.size}}平</span> 						
+						<span class="card-text">{{h.price}}万元</span> </p>
+                  <p>  <span class="card-text">{{h.location}}</span></p>
+				  <p>  <span class="card-text">{{h.other}}</span></p>
+                </div>
+              </div>
+            </div>
+	<footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#" onclick="history.back();" class="btn btn-sm btn-outline-secondary">返回</a>
+        </p>      
+      </div>
+    </footer>
+	
+</section>
+ <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="/static/js/popper.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/holder.min.js"></script>
+</body>
+</html>

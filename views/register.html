@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+<!--引入base.html -->
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-offset-2 col-md-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-user"></span>注册</h3>
+                </div>
+				<div class="row">
+        <div class="col-md-12">            
+            {{msg}}
+			<div id='err'></div>
+            
+        </div>
+    </div>
+                <div class="panel-body">
+                    <form action="/reg" method="post" class="needs-validation" novalidate>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">手机号：</label>
+                            <div class="col-sm-10">
+                                <input type="tel" name="tel" class="form-control " placeholder="手机号" value='{{tel}}' onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">密码：</label>
+                            <div class="col-sm-10">
+                            <input type="password" id='pass1' name="password" class="form-control" placeholder="Password" required>
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label class="col-sm-2 control-label">密码：</label>
+                            <div class="col-sm-10">
+                            <input type="password" id='pass2' name="password2" class="form-control" placeholder="Password" required>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" onclick="if($('#pass1').val()!=$('#pass2').val()){ $('#err').html('密码不一致');return false;}" class="btn btn-primary col-sm-4 ">注册</button>
+                            </div>
+                        </div>
+                    </form>
+					
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

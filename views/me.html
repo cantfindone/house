@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+<!--引入base.html -->
+{% block main %}
+<div class="my-3 p-3 bg-white rounded box-shadow">
+    <h6 class="border-bottom border-gray pb-2 mb-0">个人中心</h6>
+        <div class="media text-muted pt-3">         
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <!-- <strong class="text-gray-dark">Full Name</strong> -->
+              <a href="/house/list/0/0"><strong class="text-gray-dark">所有房源</strong></a>
+            </div>            
+          </div>		  
+        </div>
+		
+		<div class="media text-muted pt-3">         
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <!-- <strong class="text-gray-dark">Full Name</strong> -->
+              <a href="/house/list/{{tel}}/0/0"><strong class="text-gray-dark">我发布的房源</strong></a>
+            </div>            
+          </div>		  
+        </div> 
+			
+		<div class="media text-muted pt-3">         
+          <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="d-flex justify-content-between align-items-center w-100">
+              <!-- <strong class="text-gray-dark">Full Name</strong> -->
+              <a href="/house/favorite/{{tel}}/0/0"><strong class="text-gray-dark">我收藏的房源</strong></a>
+            </div>            
+          </div>		  
+        </div>
+		
+		
+        <!-- <small class="d-block text-right mt-3"> -->
+          <!-- <a href="#">All suggestions</a> -->
+        <!-- </small> -->
+</div>
+
+{% endblock %}
