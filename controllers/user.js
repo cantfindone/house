@@ -46,7 +46,7 @@ module.exports = {
 			let user = await mg.find('User',query)
 			if (user[0]) {
 				console.log('手机号已被注册!');
-				ctx.render('reg.html', {
+				ctx.render('register.html', {
 					title: '手机号已被注册',
 					msg:'注册失败,手机号已被注册',
 					tel:tel
