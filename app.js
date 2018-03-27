@@ -16,7 +16,7 @@ app.use(async (ctx, next) => {
     var
         start = new Date().getTime(),
         execTime;
-	if(!ctx.cookies.get('user')&&!(ctx.request.url=='/'||ctx.request.url=='/signin')){
+	if(!ctx.cookies.get('user')&&!(ctx.request.url=='/'||ctx.request.url=='/signin'||ctx.request.url=='/reg')){
 		console.log(`check ${ctx.cookies.get('user')},${ctx.request.url=="/signin"} ,${ctx.request.url=="/"}`);
 		return ctx.response.redirect('/');
 		 
