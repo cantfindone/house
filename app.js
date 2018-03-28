@@ -44,7 +44,7 @@ const options = {
   ignoreAttrs: true
 }
 
-
+/*
 app.use(xmlParser({
     limit: 128,
     encoding: 'utf8', // lib will detect it from `content-type`
@@ -55,9 +55,9 @@ app.use(xmlParser({
         ctx.throw(err.status, err.message);
     }
 }));
-
+*/
 //app.use(xml(options))
-//app.use(xmlParser());
+app.use(xmlParser());
 app.use(bodyParser());
 // parse request body:
 
