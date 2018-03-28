@@ -21,6 +21,7 @@ app.use(async (ctx, next) => {
 		return ctx.response.redirect('/');
 		 
 	}
+	if(ctx.request.url.startsWith('/wx')){ctx.disableBodyParser = true;}
     await next();
     execTime = new Date().getTime() - start;
     ctx.response.set('X-Response-Time', `${execTime}ms`);
