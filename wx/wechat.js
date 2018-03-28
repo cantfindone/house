@@ -188,7 +188,7 @@ WeChat.prototype.handleMsg = function(ctx){
 
     var result = msgXml.xml;
      //判断消息加解密方式
-     if(req.query.encrypt_type == 'aes'){
+     if(ctx.query.encrypt_type == 'aes'){
          //对加密数据解密
          result = cryptoGraphy.decryptMsg(result.Encrypt);
      }
