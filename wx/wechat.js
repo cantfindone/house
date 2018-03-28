@@ -190,16 +190,16 @@ WeChat.prototype.handleMsg = function(ctx){
      //判断消息加解密方式
      if(ctx.query.encrypt_type == 'aes'){
          //对加密数据解密
-         result = cryptoGraphy.decryptMsg(result.Encrypt);
+         result = cryptoGraphy.decryptMsg(result.Encrypt[0]);
      }
-     var toUser = result.ToUserName; //接收方微信
-     var fromUser = result.FromUserName;//发送仿微信
+     var toUser = result.ToUserName[0]; //接收方微信
+     var fromUser = result.FromUserName[0];//发送仿微信
      var reportMsg = ""; //声明回复消息的变量   
 
      //判断消息类型
-     if(result.MsgType.toLowerCase() === "event"){
+     if(result.MsgType[0].toLowerCase() === "event"){
          //判断事件类型
-         switch(result.Event.toLowerCase()){
+         switch(result.Event[0].toLowerCase()){
              case 'subscribe':
                  //回复消息
                  var content = "欢迎关注 hvkcoder 公众号，一起斗图吧。回复以下数字：\n";
@@ -220,9 +220,9 @@ WeChat.prototype.handleMsg = function(ctx){
          }
      }else{
           //判断消息类型为 文本消息
-         if(result.MsgType.toLowerCase() === "text"){
+         if(result.MsgType[0].toLowerCase() === "text"){
              //根据消息内容返回消息信息
-             switch(result.Content){
+             switch(result.Content[0]){
                  case '1':
                      reportMsg = msg.txtMsg(fromUser,toUser,'Hello ！我的英文名字叫 H-VK');
                  break;
