@@ -1,6 +1,10 @@
 const Koa = require('koa');
 
 const bodyParser = require('koa-bodyparser');
+const xml = require('koa-xml');
+const xmlParser = require('koa-xml-body');
+
+
 
 const controller = require('./controller');
 
@@ -21,10 +25,10 @@ app.use(async (ctx, next) => {
 		return ctx.response.redirect('/');
 		 
 	}
-	if(ctx.request.url.startsWith('/wx')){ctx.disableBodyParser = true;}
+	//if(ctx.request.url.startsWith('/wx')){ctx.disableBodyParser = true;}
     await next();
     execTime = new Date().getTime() - start;
-    ctx.response.set('X-Response-Time', `${execTime}ms`);
+    //ctx.response.set('X-Response-Time', `${execTime}ms`);
 });
 
 // static file support:
@@ -33,8 +37,29 @@ if (! isProduction) {
     app.use(staticFiles('/static/', __dirname + '/static'));
 }
 
-// parse request body:
+const options = {
+  normalize: true,
+  firstCharLowerCase: true,
+  explicitArray: false,
+  ignoreAttrs: true
+}
+
+
+app.use(xmlParser({
+    limit: 128,
+    encoding: 'utf8', // lib will detect it from `content-type`
+    xmlOptions: {
+        explicitArray: false
+    },
+    onerror: (err, ctx) => {
+        ctx.throw(err.status, err.message);
+    }
+}));
+
+//app.use(xml(options))
 app.use(bodyParser());
+//app.use(xmlParser());
+// parse request body:
 
 // add nunjucks as view:
 app.use(templating('views', {

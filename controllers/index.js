@@ -43,8 +43,11 @@ module.exports = {
     },
 	
 	'POST /wx': async (ctx, next) => {
+		console.log('body: '+JSON.stringify(ctx.request));
+		console.log('body: '+ctx.request.body);
 		console.log('body: '+JSON.stringify(ctx.request.body));
-		wechatApp.handleMsg(ctx);
+		//wechatApp.handleMsg(ctx);
+		ctx.response.body=ctx.request.body
     },
 	
 	'GET /wx/tk': async (ctx, next) => {
