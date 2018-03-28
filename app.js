@@ -57,8 +57,8 @@ app.use(xmlParser({
 }));
 
 //app.use(xml(options))
-app.use(bodyParser());
 //app.use(xmlParser());
+app.use(bodyParser());
 // parse request body:
 
 // add nunjucks as view:
