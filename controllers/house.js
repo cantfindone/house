@@ -1,13 +1,15 @@
 const mg = require('../mg');
 var mongo = require('mongodb');
+const fields = require('../fields');
 const filer = require('../filer');
 const img_base ='./img/';
 const page_size=2
 module.exports = {
     'GET /house/new': async (ctx, next) => {
-        ctx.render('house_new.html', {
+        ctx.render('house_new.dynamic.html', {
             title: '房产录入',
-			tel:ctx.cookies.get('user')
+			tel:ctx.cookies.get('user'),
+			fields:fields
         });
     },
 	'GET /house/list/:page/:count': async (ctx, next) => {
@@ -29,7 +31,9 @@ module.exports = {
 		}
 		//console.log('find houses:'+JSON.stringify(houses));
         ctx.render('houses.html', {
-            houses:houses,
+			tel:ctx.cookies.get('user'),
+			houses:houses,
+			fields:fields,
 			count:count,
 			page_total:page_total,
 			page_current:page,
@@ -57,7 +61,10 @@ module.exports = {
 		}
 		//console.log('find houses:'+JSON.stringify(houses));
         ctx.render('houses.html', {
+			tel:ctx.cookies.get('user'),
+			online:true,
             houses:houses,
+			fields:fields,
 			count:count,
 			page_total:page_total,
 			page_current:page,
@@ -89,7 +96,9 @@ module.exports = {
 			h.favorite= true;			
 		}
 		ctx.render('houses.html', {
-            houses:houses,
+			tel:ctx.cookies.get('user'),
+			houses:houses,
+			fields:fields,
 			count:count,
 			page_total:page_total,
 			page_current:page,
@@ -124,7 +133,9 @@ module.exports = {
 		}
 		//console.log('find houses:'+JSON.stringify(houses));
         ctx.render('houses.html', {
-            houses:houses,
+			tel:ctx.cookies.get('user'),
+			houses:houses,
+			fields:fields,
 			q:community,			
 			count:count,
 			page_total:page_total,
@@ -143,7 +154,9 @@ module.exports = {
 		house.photo= await filer.getPhoto(img_base, _id);		
 		//console.log('find houses:'+JSON.stringify(houses));
         ctx.render('house.html', {
-            h:house
+			tel:ctx.cookies.get('user'),
+			h:house,
+			fields:fields
         });
     },
 	'POST /house/save': async (ctx, next) => {
@@ -157,6 +170,7 @@ module.exports = {
 		console.log('res:'+res);
 		console.log('res:'+JSON.stringify(res))
         ctx.render('img_new.html', {
+			tel:ctx.cookies.get('user'),
             title: '上传图片',
             _id: body._id
         });

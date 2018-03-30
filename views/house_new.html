@@ -1,94 +1,118 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <title>房源录入</title>
-  </head>
-  <body>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <title>房源录入</title>
+</head>
+
+<body>
   <header>
-      
-      <nav class="navbar navbar-expand navbar-dark bg-dark">
-		  <a class="navbar-brand" href="#">蚂蚁筑家</a>
-		  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		  </button>
 
-		  <div class="collapse navbar-collapse" id="navbarsExample02">
-			<ul class="navbar-nav mr-auto">
-			  <li class="nav-item active">
-				<a class="nav-link" href="#"> <span class="sr-only">(current)</span></a>
-			  </li>
-			 
-			</ul>
-			<!-- <form class="form-inline my-2 my-md-0"> -->
-			  <!-- <input class="form-control" type="text" placeholder="小区名搜索"> -->
-			<!-- </form> -->
-		  </div>
-	  </nav>
-    </header>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <a class="navbar-brand" href="#" onclick="history.back();">返回</a>
+      <a class="navbar-brand" href="#"  >蚂蚁筑家</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <form class="needs-validation" action="/house/save" method="post" novalidate>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-		<!-- <input type='hidden' name='tel' value='{{tel}}'/> -->
-      <label for="validationCustom01">小区名称</label>
-      <input type="text" name='community' class="form-control" id="validationCustom01" placeholder="小区名称" value="南都花园" required>
-      <!-- <div class="valid-feedback"> -->
+      <div class="collapse navbar-collapse" id="navbarsExample03">
+        <ul class="navbar-nav mr-auto">
+          <!-- <li class="nav-item active">
+                <a class="nav-link" href="/home">Home
+                  <span class="sr-only">(current)</span>
+                </a>
+              </li> -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/house/list/0/0">已上线房源</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/house/list/{{tel}}/0/0">我发布的</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/house/new">发布</a>
+          </li>
+
+        </ul>
+        <form class="form-inline my-2 my-md-0" method='get' onsubmit="search(this);" action='/house/search/_X_/0/0'>
+          <input class="form-control" type="text" name='q' value='{{q}}' placeholder="小区名搜索">
+        </form>
+      </div>
+    </nav>
+  </header>
+
+  <form class="needs-validation" action="/house/save" method="post" novalidate>
+    <div class="form-row">
+      <div class="col-md-4 mb-3">
+        <!-- <input type='hidden' name='tel' value='{{tel}}'/> -->
+        <label for="validationCustom01">小区名称</label>
+        <input type="text" name='community' class="form-control" id="validationCustom01" placeholder="小区名称" value="南都花园" required>
+        <!-- <div class="valid-feedback"> -->
         <!-- Looks good! -->
-      <!-- </div> -->
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationCustom02">楼层</label>
-      <input type="text" name='floor' class="form-control" id="validationCustom02" placeholder="Last name" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"required>
+        <!-- </div> -->
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom02">楼层</label>
+        <input type="text" name='floor' class="form-control" id="validationCustom02" placeholder="Last name" value="1" onkeyup="value=value.replace(/[^\d]/g,'')"
+          onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" required>
 
-    </div>
-    
-	<div class="col-md-4 mb-3">
-      <label for="validationCustom02">室</label>
-      <input type="text" name='room' class="form-control"  placeholder="室" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"required>
+      </div>
 
-    </div>
-	
-	<div class="col-md-4 mb-3">
-      <label for="validationCustom02">厅</label>
-      <input type="text" name='hall' class="form-control"  placeholder="厅" value="1" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"required>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom02">室</label>
+        <input type="text" name='room' class="form-control" placeholder="室" value="1" onkeyup="value=value.replace(/[^\d]/g,'')"
+          onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" required>
 
-    </div>
-	
-	<div class="col-md-4 mb-3">
-      <label for="validationCustom02">面积</label>
-      <input type="text" name='size' class="form-control"  placeholder="面积" value="100" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"required>
+      </div>
 
-    </div>
-	
-	<div class="col-md-4 mb-3">
-      <label for="validationCustom02">总价（万元）</label>
-      <input type="text" name='price' class="form-control"  placeholder="总价（万元）" value="100" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"required>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom02">厅</label>
+        <input type="text" name='hall' class="form-control" placeholder="厅" value="1" onkeyup="value=value.replace(/[^\d]/g,'')"
+          onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" required>
 
-    </div>
-	<div class="col-md-4 mb-3">
-      <label for="validationCustom01">小区地址</label>
-      <input type="text" name='location' class="form-control" id="validationCustom01" placeholder="小区地址" value="西湖文新街道" required>
-      <!-- <div class="valid-feedback"> -->
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom02">面积</label>
+        <input type="text" name='size' class="form-control" placeholder="面积" value="100" onkeyup="value=value.replace(/[^\d]/g,'')"
+          onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" required>
+
+      </div>
+
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom02">总价（万元）</label>
+        <input type="text" name='price' class="form-control" placeholder="总价（万元）" value="100" onkeyup="value=value.replace(/[^\d]/g,'')"
+          onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" required>
+
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="validationCustom01">小区地址</label>
+        <input type="text" name='location' class="form-control" id="validationCustom01" placeholder="小区地址" value="西湖文新街道" required>
+        <!-- <div class="valid-feedback"> -->
         <!-- Looks good! -->
-      <!-- </div> -->
+        <!-- </div> -->
+      </div>
+      <div class="col-md-4 mb-3">
+        <label for="exampleFormControlTextarea1">其它信息</label>
+        <textarea class="form-control" name='other' id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
     </div>
-	<div class="col-md-4 mb-3">
-    <label for="exampleFormControlTextarea1">其它信息</label>
-    <textarea class="form-control" name='other' id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-  </div>
- <!-- 
+    <!-- 
   <div class="form-group">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
@@ -101,30 +125,31 @@
     </div>
   </div>
   -->
-  <button class="btn btn-primary" type="submit">提交</button>
-</form>
+    <button class="btn btn-primary" type="submit">提交</button>
+  </form>
 
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+      'use strict';
+      window.addEventListener('load', function () {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function (form) {
+          form.addEventListener('submit', function (event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
       }, false);
-    });
-  }, false);
-})();
-</script>
+    })();
+  </script>
 
-    
-  </body>
+
+</body>
+
 </html>

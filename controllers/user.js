@@ -1,4 +1,5 @@
 const mg = require('../mg');
+var mongo = require('mongodb');
 
 module.exports = {
     'POST /signin': async (ctx, next) => {
@@ -87,6 +88,31 @@ module.exports = {
 		ctx.response.type = 'application/json';
 		// 设置Response Body:
 		ctx.response.body = {'favorite': favor};
+        /*
+			console.log('err:'+JSON.stringify(e)+e);
+            ctx.response.type = 'application/json';
+			// 设置Response Body:
+			ctx.response.body = {'err': 'e'};
+			*/
+        
+    },
+	'POST /online': async (ctx, next) => {
+        var
+            tel = ctx.cookies.get('user') ,
+            _id = ctx.request.body._id ,
+			online=ctx.request.body.online;
+        
+		console.log('favor:'+online);
+		console.log('_id:'+_id);
+		if(online==='true') {
+			await mg.update('House',{'_id':new mongo.ObjectID(_id)},{'$set':{'status':1}});
+		}else{
+			await mg.update('House',{'_id':new mongo.ObjectID(_id)},{'$set':{'status':0}});
+		}
+		
+		ctx.response.type = 'application/json';
+		// 设置Response Body:
+		ctx.response.body = {'favorite': online};
         /*
 			console.log('err:'+JSON.stringify(e)+e);
             ctx.response.type = 'application/json';
