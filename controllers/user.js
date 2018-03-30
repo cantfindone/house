@@ -10,6 +10,7 @@ module.exports = {
 		console.log('query:'+JSON.stringify(query));
 		let user= await mg.find('User',query);
         if (user[0]) {
+            ctx.cookies.set('user', tel);
             return ctx.response.redirect('/home');
         } else {
             console.log('signin failed!');
@@ -57,7 +58,7 @@ module.exports = {
 			user={'_id':tel, 'password':password};
 			mg.insertOne('User',user);
             console.log('signin ok!');
-			ctx.cookies.set('user', tel);
+			
             ctx.render('index.html', {
                 tel: tel                
             });
