@@ -248,7 +248,8 @@ WeChat.prototype.handleMsg = function(ctx){
      reportMsg = ctx.query.encrypt_type == 'aes' ? cryptoGraphy.encryptMsg(reportMsg) : reportMsg ;
      //返回给微信服务器
 	 console.log(reportMsg);
-     ctx.response=reportMsg;
+     
+	ctx.response.body=reportMsg;
 
 
 }
