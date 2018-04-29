@@ -1,5 +1,6 @@
 const Koa = require('koa');
-
+const https = require('https');
+const fs = require('fs');
 const bodyParser = require('koa-bodyparser');
 const xml = require('koa-xml');
 const xmlParser = require('koa-xml-body');
@@ -20,7 +21,7 @@ app.use(async (ctx, next) => {
     var
         start = new Date().getTime(),
         execTime;
-	if(!ctx.cookies.get('user')&&!(ctx.request.url=='/'||ctx.request.url=='/signin'||ctx.request.url=='/reg'||ctx.request.url.startsWith('/wx'))){
+	if(!ctx.cookies.get('user')&&!(ctx.request.url=='/'||ctx.request.url=='/signin'||ctx.request.url=='/reg'||ctx.request.url.startsWith('/wx')||ctx.request.url.startsWith('/api/'))){
 		console.log(`check ${ctx.cookies.get('user')},${ctx.request.url=="/signin"} ,${ctx.request.url=="/"}`);
 		return ctx.response.redirect('/');
 		 
@@ -71,4 +72,10 @@ app.use(templating('views', {
 app.use(controller());
 
 app.listen(80);
+
+var ssl = {
+    key: fs.readFileSync('./ssl/server.key'),  //ssl文件路径
+    cert: fs.readFileSync('./ssl/server.pem')  //ssl文件路径
+};
+https.createServer(ssl, app.callback()).listen(443);
 console.log('app started at port 80...');
