@@ -51,8 +51,8 @@ export default {
       //items: items,
       msg: "d",
       user: {
-        _id: "ping",
-        password: "123"
+        _id: "",
+        password: ""
       }
     };
   },
