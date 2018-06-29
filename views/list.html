@@ -54,67 +54,22 @@
 	</header>
 
 	<main role="main">
-		<div class="album py-5 bg-light">
-			<div class="container">
-
-				<div class="row">
-					{% for h in houses %}
-					<div class="col-md-4">
-						<div class="card mb-4 box-shadow">
-							<div class="container">
-								<div class="row">
-									<div class="col-5">
-										<a href='/house/house/{{h._id}}'>
-											{% if h.photo%}
-											<img class="card-img-overlay pull-left" src="data:image/jpg;base64{{h.photo}}" /> {% else %}
-											<img class="card-img-overlay pull-left" data-src="holder.js/50px110?theme=thumb&bg=55595c&fg=eceeef&text=暂无" alt="Card image cap"> {% endif %}
-										</a>
-									</div>
-									<div class="col-7">
-										<!-- <div class="card-body">
-											<span class="card-text">
-												{{h.community}}
-											</span>
-										</div> -->
-
-
-										<div class="card-body">
-											{% set indx=0 %} {% for code, v in h %} {% if code in fields%} {% if indx%2==0 %}
-											<p>{% endif%}
-												<span class="card-text">{{fields[code]['name']}}:{{v}}</span>
-												{% if indx%2==0 %}</p>{% endif%} {% set indx= indx+1 %} {% endif %} {% endfor %}
-											<span class="card-text">{{h.other}}</span>
-
-											<div class="d-flex justify-content-between">
-												<!-- <div class="float-right">
-														<a href='/house/list/{{h.user}}/0/0' class="btn btn-sm btn-outline-secondary">{{h.user}}</a>
-								
-													</div> -->
-												<div class="">
-													{% if h.favorite%}
-													<small class="text-muted" onclick="favor('{{h._id}}',this)">已收藏</small>
-													{% else %}
-													<small class="text-muted" onclick="favor('{{h._id}}',this)">收藏</small>
-													{% endif %}
-												</div>
-												<div class="">
-													{% if online %} {% if h.status==1 %}
-													<small class="text-muted" onclick="online('{{h._id}}',this)">已上线</small>
-													{% else %}
-													<small class="text-muted" onclick="online('{{h._id}}',this)">未上线</small>
-													{% endif %} {% endif %}
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					{% endfor %}
-				</div>
-			</div>
-		</div>
+		<table class="table">
+			<thead>
+			  <tr>
+				<th scope="col">#</th>
+				<th scope="col">Code</th>
+				<th scope="col">Name</th>
+			  </tr>
+			</thead>
+			<tbody>
+			  <tr>
+				<th scope="row">1</th>
+				<td>Mark</td>
+				<td>Otto</td>
+			  </tr>
+			</tbody>
+		  </table>	
 
 
 
@@ -152,10 +107,10 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-	<script src="/static/js/popper.min.js"></script>
-	<script src="/static/js/bootstrap.min.js"></script>
-	<script src="/static/js/holder.min.js"></script>
-	<script src="/static/js/house.js"></script>
+	<!-- <script src="/static/js/popper.min.js"></script> -->
+	<!-- <script src="/static/js/bootstrap.min.js"></script> -->
+	<!-- <script src="/static/js/holder.min.js"></script> -->
+	<!-- <script src="/static/js/house.js"></script> -->
 </body>
 
 </html>
