@@ -96,11 +96,11 @@ app.use(templating('views', {
 // add controller:
 app.use(controller());
 
-app.listen(80);
+app.listen(8888);
 
 var ssl = {
     key: fs.readFileSync('./ssl/server.key'),  //ssl文件路径
     cert: fs.readFileSync('./ssl/server.pem')  //ssl文件路径
 };
-https.createServer(ssl, app.callback()).listen(443);
+//https.createServer(ssl, app.callback()).listen(443);
 console.log('app started at port 80...');
