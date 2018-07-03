@@ -21,13 +21,6 @@ var wechatApp = new wechat(config); //实例wechat 模块
 console.log('instanciate wechatapp....:'+ wechatApp) ;
 
 module.exports = {
-    'GET /': async (ctx, next) => {
-        ctx.render('index.html', {
-            title: 'Welcome',
-			tel:13818180000
-        });
-    },
-	
 	'GET /wx': async (ctx, next) => {
 		console.log('body: '+JSON.stringify(ctx.query));
 		var token = config.token;

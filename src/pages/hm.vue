@@ -49,7 +49,7 @@ export default {
       this.sliding = false
     },
     username:function(){
-      let user=window.u||JSON.parse(sessionStorage.getItem('u'))
+      let user=window.u||JSON.parse(localStorage.getItem('u'))
       if(!user){return ''}
      
       return user._id

@@ -70,8 +70,8 @@ export default {
       //console.log(formData);
       window.x.post("/auth/signin", this.user).then(
         response => {
-          sessionStorage.setItem('u',JSON.stringify(response.data))
-          sessionStorage.setItem('tk','Bearer '+response.data.tk)
+          localStorage.setItem('u',JSON.stringify(response.data))
+          localStorage.setItem('tk','Bearer '+response.data.tk)
           //window.x.defaults.headers.authorization='Bearer '+response.data.tk
           window.u=response.data
           this.$router.push('/')

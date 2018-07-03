@@ -37,6 +37,7 @@
                     <button type="submit" class="btn btn-primary ">注册</button>
                   </div>
                 </div>
+                <div class="alert alert-success" v-show="created" role="alert">注册成功</div>
               </form>
             
             <div>

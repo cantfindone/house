@@ -35,7 +35,7 @@ app.use(async (ctx, next) => {
     //ctx.response.set('X-Response-Time', `${execTime}ms`);
 });
 app.use(serve(path.resolve('dist')));
-app.use(koajwt({ secret: 'lunar' }).unless({ path: [/\/auth/,'/'] }));
+app.use(koajwt({ secret: 'lunar' }).unless({ path: [/\/wx/,/\/auth/,'/'] }));
 
 app.use(async (ctx, next) => {
     try {
@@ -98,9 +98,9 @@ app.use(controller());
 
 app.listen(8888);
 
-var ssl = {
-    key: fs.readFileSync('./ssl/server.key'),  //ssl文件路径
-    cert: fs.readFileSync('./ssl/server.pem')  //ssl文件路径
-};
+// var ssl = {
+//     key: fs.readFileSync('./ssl/server.key'),  //ssl文件路径
+//     cert: fs.readFileSync('./ssl/server.pem')  //ssl文件路径
+// };
 //https.createServer(ssl, app.callback()).listen(443);
 console.log('app started at port 80...');

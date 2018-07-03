@@ -1,9 +1,12 @@
 <template>
   <b-container fluid>
+  <div class="page-header">
+    <p class=" h4  text-center text-secondary">{{$route.name}}</p>
+  </div>
     <!-- User Interface controls -->
-	<b-row>
-      <b-col  class="">
-        <b-form-group horizontal label="姓名" class="mb-0">
+	<b-row class="form-inline">
+      <b-col md='4'  class="">
+        <b-form-group horizontal label="姓名" class="text-sm-left">
           <b-input-group>
             <b-form-input v-model="filter" placeholder="姓名" />
             <b-input-group-append>
@@ -14,23 +17,25 @@
       </b-col>
      
 
-      <b-col  class="">
-        <b-form-group horizontal label="每页行数" class="mb-0">
+      <b-col md='4' sm='12' class="">
+        <b-form-group horizontal label="每页行数" class="text-sm-left">
           <b-form-select :options="pageOptions" v-model="perPage" />
         </b-form-group>
       </b-col>
 
-      <b-col  class="">
-   
-            <b-input-group-append>
-              <b-btn variant="outline-dark" size='md' @click="$router.push('/reg_admin')">新建管理员</b-btn>
-            </b-input-group-append>
-    
+      <b-col md='4' class="">
+        <b-form-group horizontal label="" class="text-sm-right">
+              <b-btn  variant="outline-dark" size='md' @click="$router.push('/reg_admin')">新建管理员</b-btn>
+          
+        </b-form-group>
       </b-col>
+
+
     </b-row>
     <!-- Main table element -->
     <b-table id='my-table'
     show-empty
+    class="table-striped table-hover table-condensed"
              stacked="md"             
 			 :busy.sync="isBusy"
 			 :items="myProvider"
@@ -87,72 +92,72 @@
 <script>
 var axios = require("axios");
 
-
 export default {
-  data () {
+  data() {
     return {
       //items: items,
-	  fields: [
-		{ key: '_id', label: '用户名'},
-        { key: 'name', label: '姓名'},
-    
-		{ key:'x',label:'操作',class:'right'}
-	   ],
-	  currentPage: 1,
+      fields: [
+        { key: "_id", label: "用户名" },
+        { key: "name", label: "姓名" },
+
+        { key: "x", label: "操作", class: "right" }
+      ],
+      currentPage: 1,
       perPage: 10,
-      pageOptions: [ 5, 10, 20 ],
-	  totalRows:0,
+      pageOptions: [5, 10, 20],
+      totalRows: 0,
       sortBy: null,
       sortDesc: false,
-      sortDirection: 'asc',
+      sortDirection: "asc",
       isBusy: false,
       filter: null,
-      modalInfo: { title: '删除', user: {_id:'',name:'' }}
-	  
-    }
+      modalInfo: { title: "删除", user: { _id: "", name: "" } }
+    };
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {
-	myProvider (ctx) {
-		console.log('filter:',ctx.filter)
-	  let promise = axios.get('/api/ins/user?prv=2&start='+(ctx.currentPage-1)*ctx.perPage+'&count='+ctx.perPage+(ctx.filter?'&reg_name='+ctx.filter:''))
+    myProvider(ctx) {
+      console.log("filter:", ctx.filter);
+      let promise = axios.get(
+        "/api/ins/user?prv=2&start=" +
+          (ctx.currentPage - 1) * ctx.perPage +
+          "&count=" +
+          ctx.perPage +
+          (ctx.filter ? "&reg_name=" + ctx.filter : "")
+      );
 
-	  // Must return a promise that resolves to an array of items
-	  return promise.then((data) => {
-		// Pluck the array of items off our axios response
-		let items = data.data.data
-		this.totalRows=data.data.size
-		// Must return an array of items or an empty array if an error occurred
-		return(items || [])
-	  })
-	},
-    remove (item, index, button) {
-    //console.log(item.item.name)
-		this.modalInfo.user=item.item
-		this.$root.$emit('bv::show::modal', 'modalInfo', button)
-	       
+      // Must return a promise that resolves to an array of items
+      return promise.then(data => {
+        // Pluck the array of items off our axios response
+        let items = data.data.data;
+        this.totalRows = data.data.size;
+        // Must return an array of items or an empty array if an error occurred
+        return items || [];
+      });
     },
-    doRemove () {
-    console.log(this.modalInfo)
-    window.x.get('/api/ins/user/del/'+this.modalInfo.user._id).then((d)=>{
-      this.$root.$emit('bv::refresh::table', 'my-table');
-      console.log(d)})
-		
-	       
+    remove(item, index, button) {
+      //console.log(item.item.name)
+      this.modalInfo.user = item.item;
+      this.$root.$emit("bv::show::modal", "modalInfo", button);
     },
-    resetModal () {
-      this.modalInfo.title = '删除'
-      this.modalInfo.content = ''
+    doRemove() {
+      console.log(this.modalInfo);
+      window.x.get("/api/ins/user/del/" + this.modalInfo.user._id).then(d => {
+        this.$root.$emit("bv::refresh::table", "my-table");
+        console.log(d);
+      });
     },
-    onFiltered (filteredItems) {
+    resetModal() {
+      this.modalInfo.title = "删除";
+      this.modalInfo.content = "";
+    },
+    onFiltered(filteredItems) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length
-      this.currentPage = 1
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     }
   }
-}
+};
 </script>
 
 <!-- table-complete-1.vue -->

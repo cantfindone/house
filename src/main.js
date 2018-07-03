@@ -14,7 +14,7 @@ Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 
 router.beforeEach(function (to,from,next) {  
-  if (!['/','/dl','/tc'].includes(to.path) && !window.u && !sessionStorage.getItem('u')) {
+  if (!['/','/dl','/tc'].includes(to.path) && !window.u && !localStorage.getItem('u')) {
       // if route requires auth and user isn't authenticated
       next('/')
   } else {
@@ -34,7 +34,7 @@ window.x.interceptors.response.use(
           switch (error.response.status) {
               case 401:  
                   // 返回 401 清除token信息并跳转到登录页面
-                  sessionStorage.clear()
+                  localStorage.clear()
                   router.replace({
                       path: '/dl',
                       query: {redirect: router.currentRoute.fullPath}

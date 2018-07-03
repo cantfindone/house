@@ -2,8 +2,8 @@ var axios = require("axios");
 
 axios.interceptors.request.use(
     config => {
-        if (sessionStorage.getItem('tk')){  // 判断是否存在token，如果存在的话，则每个http header都加上token
-            config.headers.authorization = sessionStorage.getItem('tk')
+        if (localStorage.getItem('tk')){  // 判断是否存在token，如果存在的话，则每个http header都加上token
+            config.headers.authorization = localStorage.getItem('tk')
             console.log(config.header)
         }
         return config;
@@ -23,7 +23,7 @@ axios.interceptors.request.use(
 //             switch (error.response.status) {
 //                 case 401:  
 //                     // 返回 401 清除token信息并跳转到登录页面
-//                     sessionStorage.clear()
+//                     localStorage.clear()
 //                     router.replace({
 //                         path: '/dl',
 //                         query: {redirect: router.currentRoute.fullPath}

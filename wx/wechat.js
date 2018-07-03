@@ -202,10 +202,9 @@ WeChat.prototype.handleMsg = function(ctx){
          switch(result.Event[0].toLowerCase()){
              case 'subscribe':
                  //回复消息
-                 var content = "欢迎关注 hvkcoder 公众号，一起斗图吧。回复以下数字：\n";
-                     content += "1.你是谁\n";
-                     content += "2.关于Node.js\n";
-                     content += "回复 “文章”  可以得到图文推送哦~\n";
+                 var content = "欢迎关注 月亮之上：\n";
+                     content += "请登录： https://api.lunary.top \n";
+                    
                  reportMsg = msg.txtMsg(fromUser,toUser,content);
              break;
              case 'click':
@@ -239,7 +238,7 @@ WeChat.prototype.handleMsg = function(ctx){
                      reportMsg = msg.graphicMsg(fromUser,toUser,contentArr);
                  break;
                  default:
-                     reportMsg = msg.txtMsg(fromUser,toUser,'没有这个选项哦');
+                     reportMsg = msg.txtMsg(fromUser,toUser,'https://api.lunary.top');
                  break;
              }
          }
