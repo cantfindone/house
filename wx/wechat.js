@@ -232,12 +232,12 @@ WeChat.prototype.handleMsg = function(ctx){
                          {Title:"Node.js access_token的获取、存储及更新",Description:"Node.js access_token的获取、存储及更新",PicUrl:"http://img.blog.csdn.net/20170528151333883?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHZrQ29kZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast",Url:"http://blog.csdn.net/hvkcoder/article/details/72783631"},
                          {Title:"Node.js 接入微信公众平台开发",Description:"Node.js 接入微信公众平台开发",PicUrl:"http://img.blog.csdn.net/20170605162832842?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvaHZrQ29kZXI=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast",Url:"http://blog.csdn.net/hvkcoder/article/details/72765279"}
                      ];
-                     //回复图文消息
                      reportMsg = msg.graphicMsg(fromUser,toUser,contentArr);
                  break;
                  default:
                         var contentArr = [
-                            {Title:"月亮之上",Description:"月亮之上",Url:"https://api.lunary.top"}
+                            {Title:"月亮之上",Description:"月亮之上",PicUrl:"https://picsum.photos/1024/480/?image=52",Url:"http://api.lunary.top"},
+                            {Title:"月亮之上",Description:"月亮之上",PicUrl:"https://picsum.photos/1024/480/?image=52",Url:"https://api.lunary.top"},
                            ];
                         //回复图文消息
                         reportMsg = msg.graphicMsg(fromUser,toUser,contentArr);
